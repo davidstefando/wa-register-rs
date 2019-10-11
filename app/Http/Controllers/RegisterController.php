@@ -47,35 +47,35 @@ class RegisterController extends Controller
 	 			$this->wa->reply('Silakan masukan tempat lahir anda');
 	 		}
 
-	 		//Step kedua (tanggal lahir)
+	 		//Step ketiga (tanggal lahir)
 	 		if($currentChatSession->get()->first()->last_step == 'tempat_lahir'){
 	 			$this->visitor['place_of_birth'] = $message->getMessage();
 	 			$currentChatSession->update(['last_step' => 'tanggal_lahir']);
 	 			$this->wa->reply('Silakan masukan tanggal lahir anda');
 	 		}
 
-	 		//Step kedua (jenis kelamin)
+	 		//Step keempat (jenis kelamin)
 	 		if($currentChatSession->get()->first()->last_step == 'tanggal_lahir'){
 	 			$this->visitor['date_of_birth'] = $message->getMessage();
 	 			$currentChatSession->update(['last_step' => 'jenis_kelamin']);
 	 			$this->wa->reply('Silakan masukan jenis kelamin anda');
 	 		}
 
-	 		//Step kedua (poli)
+	 		//Step kelima (poli)
 	 		if($currentChatSession->get()->first()->last_step == 'jenis_kelamin'){
 	 			$this->visitor['gender'] = $message->getMessage();
 	 			$currentChatSession->update(['last_step' => 'poli']);
 	 			$this->wa->reply('Silakan masukan pilihan poli anda');
 	 		}
 
-	 		//Step kedua (tempat lahir)
+	 		//Step keenam (confirm)
 	 		if($currentChatSession->get()->first()->last_step == 'poli'){
 	 			$this->visitor['poli'] = $message->getMessage();
 	 			$currentChatSession->update(['last_step' => 'confirm']);
 	 			$this->wa->reply('Silakan masukan tempat lahir anda');
 	 		}
 
-	 		//Step kedua (tempat lahir)
+			// Simpan ke database	 		
 	 		if($currentChatSession->get()->first()->last_step == 'confirm'){	
 	 			$visitor = new Visitor;
 	 			$visitor->name = $this->visitor['name'];
@@ -91,11 +91,13 @@ class RegisterController extends Controller
 	 						"Tanggal Lahir : $this->visitor['date_of_birth'] \n" .
 	 						"Jenis Kelamin : $this->visitor['gender'] \n" .
 	 						"Poli : $this->visitor['poli'] \n" .
-	 						"Anda mendapat nomor antrian ke - $queueNumber"
+	 						"Anda mendapat nomor antrian ke - $visitor->id";
+
+	 			$this->wa->reply($response);
 	 		}
 	 	} else {
 			if(!in_array($message->content, $allowedCommand)){
-	    		$this->wa->reply('Pesan yang anda kirim tidak sesuai format. Anda dapat melakukan pendaftaran pasien dan cek jadwal dokter.')
+	    		$this->wa->reply('Pesan yang anda kirim tidak sesuai format. Anda dapat melakukan pendaftaran pasien, balas pesan ini dengan kata "Daftar"');
 	    	} else {
 				//Simpan Chat Session jika belum ada sebelumnya
 		 		$chatSession = new ChatSession;
