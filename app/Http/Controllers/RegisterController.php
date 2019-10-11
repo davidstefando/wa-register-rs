@@ -17,8 +17,10 @@ class RegisterController extends Controller
 		$this->wa = new WA();
 	}
 
-    public function index(Request $message)
+    public function index(Request $request)
     {
+
+    	$message = new MessageParser($request);
 
     	//Cek apakah ada sesi chat pendaftaran sesuai sender pada hari ini
     	$currentChatSession = ChatSession::where('sender', $message->getSender())
