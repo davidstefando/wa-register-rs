@@ -15,12 +15,24 @@
                 <th> ID </th>
                 <th> Nama </th>
                 <th> Jenis Kelamin </th>
+                <th> Tempat Lahir </th>
                 <th> Tanggal Lahir </th>
-                <th> Gol. Darah </th>
-                <th> Alamat </th>
                 <th> Poli </th>
-                <th> Sequence </th>
+                <th> Antrian </th>
             </thead>
+            <tbody>
+                @foreach ($visitors as $item)
+                    <tr>
+                        <td> {{ucfirst($item->id)}} </td>
+                        <td> {{ucfirst($item->name)}} </td>
+                        <td> {{ucfirst($item->jenis_kelamin)}} </td>
+                        <td> {{ucfirst($item->place_of_birth)}} </td>
+                        <td> {{ucfirst($item->date_of_birth)}} </td>
+                        <td> {{ucfirst($item->poli)}} </td>
+                        <td> {{ucfirst($item->id)}} </td>
+                    </tr>
+                @endforeach
+            </tbody>
         </table>
     </div>
 

@@ -18,4 +18,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 
-Route::post('webhook', 'Api\WebhookController@process');
+Route::post('webhook', 'RegisterController@index');

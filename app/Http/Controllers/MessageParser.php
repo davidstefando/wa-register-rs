@@ -9,14 +9,16 @@ class MessageParser{
 
 	public function __construct($message)
 	{
-
+		$this->message = $message['data'];
 	}
 
-	public function getSender(){
-		return $this->sender;
+	public function getSender()
+	{
+		return $this->message['contact_id'];
 	}
 
-	public function getMessage(){
-		$return $this->message;
+	public function getMessage()
+	{
+		return $this->message['body'];
 	}
 }

@@ -15,14 +15,15 @@ class CreateVisitorsTable extends Migration
     {
         Schema::create('visitors', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name');
-            $table->string('jenis_kelamin');
-            $table->string('date_of_birth');
-            $table->string('place_of_birth');
-            $table->string('blood_type');
-            $table->string('address');
-            $table->string('poli');
-            $table->string('sequence');
+            $table->unsignedInteger('chat_session_id');
+            $table->string('name')->nullable();
+            $table->string('jenis_kelamin')->nullable();
+            $table->string('date_of_birth')->nullable();
+            $table->string('place_of_birth')->nullable();
+            $table->string('blood_type')->nullable();
+            $table->string('address')->nullable();
+            $table->string('poli')->nullable();
+            $table->string('sequence')->nullable();
             $table->timestamps();
         });
     }
