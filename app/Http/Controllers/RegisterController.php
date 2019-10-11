@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use WA;
+use MessageParser;
 
 class RegisterController extends Controller
 {
@@ -19,7 +20,6 @@ class RegisterController extends Controller
 
     public function index(Request $request)
     {
-
     	$message = new MessageParser($request);
 
     	//Cek apakah ada sesi chat pendaftaran sesuai sender pada hari ini
