@@ -47,6 +47,8 @@ class RegisterController extends Controller
 					$currentChatSession->update(['last_step' => 'nama']);
 					$this->wa->reply($message->getSender(), 'Silakan masukan nama anda');
 					return response()->json(['message' => 'success'], 200);
+				} else {
+					return $this->wa->reply($message->getSender(), 'Pesan yang anda kirim tidak sesuai format. Anda dapat melakukan pendaftaran pasien, balas pesan ini dengan kata "Daftar"');
 				}
 
 				//Step kedua (tempat lahir)
@@ -123,9 +125,9 @@ class RegisterController extends Controller
 					return response()->json(['message' => 'success'], 200);
 				}
 			} else {
-				if(!in_array(strtolower($message->getMessage()), $allowedCommand = ['daftar'])){
-					$this->wa->reply($message->getSender(), 'Pesan yang anda kirim tidak sesuai format. Anda dapat melakukan pendaftaran pasien, balas pesan ini dengan kata "Daftar"');
-				} else {
+				// if(!in_array(strtolower($message->getMessage()), $allowedCommand = ['daftar'])){
+				// 	$this->wa->reply($message->getSender(), 'Pesan yang anda kirim tidak sesuai format. Anda dapat melakukan pendaftaran pasien, balas pesan ini dengan kata "Daftar"');
+				// } else {
 					//Simpan Chat Session jika belum ada sebelumnya
 					$chatSession = new ChatSession;
 					$chatSession->sender = $message->getSender();
@@ -133,7 +135,7 @@ class RegisterController extends Controller
 					$chatSession->save();
 
 					return $this->wa->reply($message->getSender(), 'Anda dapat melakukan pendaftaran pasien, dengan mengirimkan kata "Daftar"');
-				}
+				// }
 			}
 		 
 		} else {
