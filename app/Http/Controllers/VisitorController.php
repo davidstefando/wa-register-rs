@@ -9,7 +9,7 @@ class VisitorController extends Controller
 {
     public function index()
     {
-        $visitors = Visitor::all();
+        $visitors = Visitor::whereNotNull('poli')->get();
         return view('visitor.index', compact('visitors'));
     }
 }

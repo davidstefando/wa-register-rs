@@ -12,13 +12,12 @@
     <div class="container-fluid">
         <table class="table table-bordered">
             <thead>
-                <th> ID </th>
+                <th> Antrian </th>
                 <th> Nama </th>
                 <th> Jenis Kelamin </th>
                 <th> Tempat Lahir </th>
                 <th> Tanggal Lahir </th>
                 <th> Poli </th>
-                <th> Antrian </th>
             </thead>
             <tbody>
                 @foreach ($visitors as $item)
@@ -29,7 +28,6 @@
                         <td> {{ucfirst($item->place_of_birth)}} </td>
                         <td> {{ucfirst($item->date_of_birth)}} </td>
                         <td> {{ucfirst($item->poli)}} </td>
-                        <td> {{ucfirst($item->id)}} </td>
                     </tr>
                 @endforeach
             </tbody>

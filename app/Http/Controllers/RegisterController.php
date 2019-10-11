@@ -135,7 +135,7 @@ class RegisterController extends Controller
 					$chatSession->last_step = 'new';
 					$chatSession->save();
 
-					return $this->wa->reply($message->getSender(), 'Anda dapat melakukan pendaftaran pasien, dengan mengirimkan kata "Daftar"');
+					return $this->wa->reply($message->getSender(), 'Anda dapat melakukan pendaftaran pasien, dengan mengirimkan kata "daftar"');
 				// }
 			}
 		 
